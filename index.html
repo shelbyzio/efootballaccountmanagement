@@ -1,1034 +1,827 @@
 <!DOCTYPE html>
-<html lang="my" class="dark">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eFootball Account Inventory & Profit Management</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Happy Thadingyut Babe ❤️ - Surprise Gift</title>
+    <!-- Tailwind CSS for rapid responsive utility styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Myanmar Text & Elegant Roman Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        darkBg: '#0f172a',
-                        cardBg: '#1e293b',
-                        accentBlue: '#3b82f6',
-                        accentPurple: '#8b5cf6',
+                        rosepink: '#FFB6C1',
+                        softcream: '#FFFDD0',
+                        champagne: '#F7E7CE',
+                        goldaccent: '#D4AF37',
+                        deeprose: '#E63946',
+                        warmpink: '#FFF0F5',
+                        darkmagenta: '#4A154B'
+                    },
+                    fontFamily: {
+                        myanmar: ['"Noto Sans Myanmar"', 'sans-serif'],
+                        cursive: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Poppins"', 'sans-serif']
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Noto Sans Myanmar', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2D0B22 0%, #4A153A 40%, #1F0818 100%);
+            min-height: 100vh;
+            color: #FFFDD0;
+            overflow-x: hidden;
+            position: relative;
         }
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+
+        /* Ambient Glow & Sparkle Overlay */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 30%, rgba(255, 182, 193, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 1;
         }
-        ::-webkit-scrollbar-track {
-            background: #0f172a;
+
+        /* Thadingyut Glowing Lantern Animation */
+        .lantern {
+            position: absolute;
+            width: 42px;
+            height: 52px;
+            background: radial-gradient(circle, #FFF 10%, #FFD700 40%, #FF4500 90%);
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: 0 0 25px 8px rgba(255, 215, 0, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: floatLantern 6s ease-in-out infinite alternate;
+            z-index: 2;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
+
+        .lantern::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 14px;
+            background: #D4AF37;
+            clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #475569;
+
+        @keyframes floatLantern {
+            0% { transform: translateY(0px) rotate(-3deg); }
+            100% { transform: translateY(-25px) rotate(4deg); }
+        }
+
+        /* Floating Hearts Background */
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.4);
+            font-size: 1.2rem;
+            animation: floatUp 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.6) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 182, 193, 0.2);
+        }
+
+        /* Gold Gradient Text */
+        .gold-text {
+            background: linear-gradient(135deg, #FFFDD0 0%, #F7E7CE 40%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Shiny Button Effect */
+        .btn-romantic {
+            background: linear-gradient(135deg, #E63946 0%, #FF6B8B 50%, #D4AF37 100%);
+            background-size: 200% auto;
+            transition: all 0.4s ease;
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4), 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-romantic:hover {
+            background-position: right center;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(230, 57, 70, 0.6), 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-romantic:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* Canvas Wheel Shadows & Pointer */
+        .wheel-container {
+            position: relative;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 36px;
+            height: 46px;
+            z-index: 30;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        /* Modal Blur */
+        .modal-backdrop {
+            background: rgba(15, 5, 12, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smooth Screen Transition */
+        .screen-fade {
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
         }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col">
+<body class="flex flex-col items-center justify-between min-h-screen p-4 sm:p-6 select-none">
 
-    <!-- Header / Navigation -->
-    <header class="bg-cardBg border-b border-slate-800 sticky top-0 z-30 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl shadow-lg">
-                    <i class="fa-solid fa-gamepad text-white text-xl"></i>
-                </div>
-                <div>
-                    <div class="flex items-center space-x-2">
-                        <h1 class="font-bold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">eFootball Manager</h1>
-                        <span id="syncStatus" class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px] px-2 py-0.5 rounded-full flex items-center space-x-1">
-                            <i class="fa-solid fa-circle-notch animate-spin text-[8px]"></i>
-                            <span>ချိတ်ဆက်နေသည်...</span>
-                        </span>
-                    </div>
-                    <p class="text-xs text-slate-400">Inventory & Profit Management</p>
-                </div>
-            </div>
+    <!-- Ambient Glow & Background Layer -->
+    <div class="ambient-glow"></div>
+    <div id="hearts-container"></div>
 
-            <!-- Navigation Tabs (Desktop) -->
-            <div class="hidden md:flex items-center space-x-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800">
-                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="px-4 py-2 rounded-lg text-xs font-semibold transition bg-blue-600 text-white shadow">ဒက်ရှ်ဘုတ်</button>
-                <button onclick="switchTab('accounts')" id="nav-accounts" class="px-4 py-2 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white">အကောင့်များ (IN/OUT)</button>
-                <button onclick="switchTab('history')" id="nav-history" class="px-4 py-2 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white">အရောင်းမှတ်တမ်း (History)</button>
-                <button onclick="switchTab('reports')" id="nav-reports" class="px-4 py-2 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white">နေ့စွဲအလိုက် အစီရင်ခံစာ</button>
-            </div>
+    <!-- Decorative Thadingyut Lanterns -->
+    <div class="lantern top-6 left-6 sm:left-16" style="animation-delay: 0s;"></div>
+    <div class="lantern top-12 right-6 sm:right-16" style="animation-delay: 1.5s;"></div>
+    <div class="lantern top-32 left-1/4 hidden md:block" style="animation-delay: 3s;"></div>
+    <div class="lantern top-28 right-1/4 hidden md:block" style="animation-delay: 4.5s;"></div>
 
-            <div class="flex items-center space-x-2">
-                <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition shadow-lg shadow-blue-600/30 flex items-center space-x-2">
-                    <i class="fa-solid fa-plus"></i>
-                    <span class="hidden sm:inline">+ အကောင့်အသစ်ထည့်မည်</span>
-                </button>
-            </div>
+    <!-- Header Controls: Sound & Theme Mood -->
+    <header class="w-full max-w-4xl flex justify-between items-center z-20 py-2 px-4">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-sparkles text-goldaccent animate-pulse text-lg"></i>
+            <span class="font-cursive text-2xl text-rosepink">Thadingyut Festival of Lights</span>
         </div>
-        <!-- Mobile Navigation Subbar -->
-        <div class="flex md:hidden bg-slate-900/90 border-t border-slate-800 px-4 py-2 overflow-x-auto space-x-2">
-            <button onclick="switchTab('dashboard')" id="mobnav-dashboard" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-blue-600 text-white">ဒက်ရှ်ဘုတ်</button>
-            <button onclick="switchTab('accounts')" id="mobnav-accounts" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-slate-400">အကောင့်များ</button>
-            <button onclick="switchTab('history')" id="mobnav-history" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-slate-400">အရောင်းမှတ်တမ်း</button>
-            <button onclick="switchTab('reports')" id="mobnav-reports" class="px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-slate-400">အစီရင်ခံစာ</button>
-        </div>
+        <!-- Sound Toggle Button -->
+        <button id="soundToggleBtn" onclick="toggleSound()" class="glass-card px-4 py-2 rounded-full flex items-center space-x-2 text-sm text-softcream hover:border-goldaccent transition-all duration-300">
+            <i id="soundIcon" class="fa-solid fa-volume-xmark text-deeprose"></i>
+            <span id="soundText">Sound: Off</span>
+        </button>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
-        
-        <!-- ================= TAB 1: DASHBOARD ================= -->
-        <div id="tab-dashboard" class="space-y-6">
-            <!-- Date Filter Bar for Dashboard -->
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm">
-                <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-calendar-day text-blue-400"></i>
-                    <span class="text-sm font-semibold text-slate-200">ကာလအလိုက် စာရင်းဇယားများ:</span>
-                </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="setDashboardPeriod('today')" id="period-today" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-blue-600 text-white transition">ယနေ့ (Today)</button>
-                    <button onclick="setDashboardPeriod('yesterday')" id="period-yesterday" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">မနေ့က</button>
-                    <button onclick="setDashboardPeriod('7days')" id="period-7days" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">နောက်ဆုံး ၇ ရက်</button>
-                    <button onclick="setDashboardPeriod('month')" id="period-month" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">ယခုလ (This Month)</button>
-                    <button onclick="setDashboardPeriod('all')" id="period-all" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition">အားလုံး (All Time)</button>
-                </div>
+    <!-- MAIN CONTAINER -->
+    <main class="w-full max-w-xl my-auto z-10 flex flex-col items-center justify-center">
+
+        <!-- SCREEN 1: ROMANTIC WELCOME CARD -->
+        <section id="welcomeScreen" class="w-full glass-card rounded-3xl p-6 sm:p-10 text-center screen-fade my-auto">
+            <div class="inline-block p-4 rounded-full bg-rosepink/10 border border-goldaccent/30 mb-4 animate-bounce">
+                <i class="fa-solid fa-gift text-4xl text-goldaccent"></i>
+            </div>
+            
+            <h1 class="font-cursive text-4xl sm:text-4xl font-bold text-rosepink mb-2 drop-shadow-lg">
+                Happy Thadingyut Babe 💗
+            </h1>
+
+            <br>
+            
+            <h2 class="font-myanmar text-lg sm:text-xl font-semibold text-softcream mb-3 leading-relaxed">
+                ပျော်ရွှင်စရာ သီတင်းကျွတ်လေးတစ်ခု ဖြစ်ပါစေ .. 🎁
+            </h2>
+
+            <br>
+            
+            <p class="font-myanmar text-sm sm:text-base text-champagne/90 mb-8 leading-normal">
+                မုန့်ဖိုးလေးကို ကိုယ်တိုင်လှည့်ပြီး ကံစမ်းနိုင်ပါပီ မမ 💗
+            </p>
+
+            <button onclick="revealSpinSection()" class="btn-romantic font-myanmar font-bold text-white text-lg px-8 py-4 rounded-full w-full sm:w-auto flex items-center justify-center space-x-3 mx-auto">
+                <span>မုန့်ဖိုးလေး ယူနိုင်ပါပီ 💝</span>
+                <i class="fa-solid text-sm"></i>
+            </button>
+        </section>
+
+
+        <!-- SCREEN 2: SPIN WHEEL SECTION (Hidden initially) -->
+        <section id="spinScreen" class="w-full flex flex-col items-center text-center screen-fade hidden">
+            <!-- Dynamic Header Info -->
+            <div class="mb-4">
+                <span class="font-cursive text-3xl text-goldaccent">Make a Wish & Spin! 🌟</span>
+                <p class="font-myanmar text-xs sm:text-sm text-rosepink mt-1">
+                    သီတင်းကျွတ်မှာ ကံအကောင်းဆုံးသူလေး ဖြစ်ပါစေ Babe .... 💖
+                </p>
             </div>
 
-            <!-- TODAY / PERIOD SECTION -->
-            <div>
-                <h3 id="periodTitleBadge" class="text-xs font-bold uppercase tracking-wider text-blue-400 mb-3 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-bolt"></i><span>ယနေ့ (Today's Performance)</span>
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
-                        <div>
-                            <p class="text-xs font-medium text-slate-400">အကောင့်ဝင်ရောက်မှု (IN)</p>
-                            <h3 id="dashInCount" class="text-2xl font-bold text-white mt-1">0</h3>
-                        </div>
-                        <div class="bg-blue-500/10 text-blue-400 p-3 rounded-xl border border-blue-500/20">
-                            <i class="fa-solid fa-arrow-down text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
-                        <div>
-                            <p class="text-xs font-medium text-slate-400">ရောင်းချပြီး (OUT)</p>
-                            <h3 id="dashOutCount" class="text-2xl font-bold text-emerald-400 mt-1">0</h3>
-                        </div>
-                        <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-xl border border-emerald-500/20">
-                            <i class="fa-solid fa-arrow-up text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
-                        <div>
-                            <p class="text-xs font-medium text-slate-400">ဝင်ငွေ (Revenue)</p>
-                            <h3 id="dashRevenue" class="text-xl font-bold text-blue-400 mt-1">0 MMK</h3>
-                        </div>
-                        <div class="bg-blue-500/10 text-blue-400 p-3 rounded-xl border border-blue-500/20">
-                            <i class="fa-solid fa-wallet text-lg"></i>
-                        </div>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex items-center justify-between shadow-sm">
-                        <div>
-                            <p class="text-xs font-medium text-slate-400">အမြတ် (Profit)</p>
-                            <h3 id="dashProfit" class="text-xl font-bold text-emerald-400 mt-1">0 MMK</h3>
-                        </div>
-                        <div class="bg-emerald-500/10 text-emerald-400 p-3 rounded-xl border border-emerald-500/20">
-                            <i class="fa-solid fa-chart-line text-lg"></i>
-                        </div>
-                    </div>
-                </div>
+            <!-- Canvas Wheel Container -->
+            <div class="wheel-container my-4">
+                <!-- Golden Pointer Icon SVG -->
+                <svg class="wheel-pointer" viewBox="0 0 36 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 46L2 14C-2 8 2 0 10 0H26C34 0 38 8 34 14L18 46Z" fill="url(#pointerGold)"/>
+                    <path d="M18 40L6 14C3.5 9.5 6 3 11 3H25C30 3 32.5 9.5 30 14L18 40Z" fill="#FFFDD0"/>
+                    <defs>
+                        <linearGradient id="pointerGold" x1="18" y1="0" x2="18" y2="46" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FFD700"/>
+                            <stop offset="0.5" stop-color="#D4AF37"/>
+                            <stop offset="1" stop-color="#996515"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- Responsive Wheel Canvas -->
+                <canvas id="wheelCanvas" width="380" height="380" class="max-w-[320px] max-h-[320px] sm:max-w-[380px] sm:max-h-[380px] rounded-full"></canvas>
             </div>
 
-            <!-- TOTAL OVERVIEW SECTION -->
-            <div>
-                <h3 class="text-xs font-bold uppercase tracking-wider text-purple-400 mb-3 flex items-center space-x-1.5">
-                    <i class="fa-solid fa-vault"></i><span>စုစုပေါင်း အချက်အလက်များ (All-Time Totals)</span>
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                        <p class="text-xs font-medium text-slate-400">စုစုပေါင်း အကောင့်များ</p>
-                        <h3 id="totTotalAccs" class="text-xl font-bold text-white mt-1">0</h3>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                        <p class="text-xs font-medium text-slate-400">လက်ကျန်စတော့ (Available IN)</p>
-                        <h3 id="totAvailable" class="text-xl font-bold text-blue-400 mt-1">0</h3>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                        <p class="text-xs font-medium text-slate-400">ရောင်းပြီး စုစုပေါင်း (OUT)</p>
-                        <h3 id="totSold" class="text-xl font-bold text-emerald-400 mt-1">0</h3>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                        <p class="text-xs font-medium text-slate-400">စုစုပေါင်း ဝင်ငွေ (Revenue)</p>
-                        <h3 id="totRevenue" class="text-xl font-bold text-blue-400 mt-1">0 MMK</h3>
-                    </div>
-                    <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                        <p class="text-xs font-medium text-slate-400">စုစုပေါင်း အမြတ် (Profit)</p>
-                        <h3 id="totProfit" class="text-xl font-bold text-emerald-400 mt-1">0 MMK</h3>
-                    </div>
-                </div>
-            </div>
+            <!-- Spin Action Button -->
+            <button id="spinBtn" onclick="spinWheel()" class="btn-romantic font-myanmar font-bold text-white text-lg sm:text-xl px-10 py-4 rounded-full mt-4 flex items-center justify-center space-x-3 w-full sm:w-auto">
+                <i class="fa-solid fa-heart text-goldaccent animate-pulse"></i>
+                <span>SPIN SURPRISE WHEEL</span>
+            </button>
+            <p id="spinNotice" class="font-myanmar text-xs text-champagne/70 mt-3 h-5">
+                
+            </p>
 
-            <!-- Inventory Cost & Quick Actions -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-5 flex items-center justify-between">
-                    <div>
-                        <p class="text-xs font-medium text-slate-400">လက်ကျန်စတော့ ဝယ်ဈေးတန်ဖိုး (Inventory Cost)</p>
-                        <h3 id="invCost" class="text-2xl font-bold text-amber-400 mt-1">0 MMK</h3>
-                        <p class="text-[11px] text-slate-500 mt-1">လက်ရှိ IN ရှိနေသေးသော အကောင့်များ၏ ဝယ်ရင်းဈေး စုစုပေါင်း</p>
-                    </div>
-                    <div class="bg-amber-500/10 text-amber-400 p-3.5 rounded-2xl border border-amber-500/20">
-                        <i class="fa-solid fa-boxes-stacked text-xl"></i>
-                    </div>
-                </div>
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-5 flex flex-col justify-between">
-                    <div class="flex items-center justify-between mb-2">
-                        <span class="text-xs font-semibold text-slate-300">အမြန် လုပ်ဆောင်ချက်များ (Quick Actions)</span>
-                        <i class="fa-solid fa-bolt text-blue-400"></i>
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="openAddModal()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-xl text-xs font-medium transition shadow-lg shadow-blue-600/30 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-plus"></i><span>အကောင့်အသစ်ထည့်မည်</span>
-                        </button>
-                        <button onclick="switchTab('accounts')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 py-2.5 rounded-xl text-xs font-medium transition border border-slate-700 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-list-check"></i><span>စတော့စာရင်းကြည့်မည်</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 2: ACCOUNTS (IN/OUT) ================= -->
-        <div id="tab-accounts" class="space-y-6 hidden">
-            <!-- Search & Filter Bar -->
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between shadow-sm">
-                <div class="relative w-full md:w-96">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
-                    <input type="text" id="searchInput" oninput="renderAccountsTable()" placeholder="Account ID (သို့) Gmail ဖြင့် ရှာရန်..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                </div>
-                <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                    <button onclick="setAccountFilter('all')" id="accfilter-all" class="px-4 py-2 rounded-xl text-xs font-medium bg-blue-600 text-white transition whitespace-nowrap">အားလုံး</button>
-                    <button onclick="setAccountFilter('in')" id="accfilter-in" class="px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap">စတော့ရှိ (IN)</button>
-                    <button onclick="setAccountFilter('out')" id="accfilter-out" class="px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap">ရောင်းပြီး (OUT)</button>
-                </div>
-            </div>
-
-            <!-- Accounts Table -->
-            <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-900/80 border-b border-slate-800 text-xs font-semibold text-slate-400">
-                                <th class="p-4">Account ID / Gmail</th>
-                                <th class="p-4">ဂိမ်းအမည် / IGN</th>
-                                <th class="p-4">ဝယ်ဈေး (Buying)</th>
-                                <th class="p-4">ရောင်းဈေး / အမြတ်</th>
-                                <th class="p-4">ရက်စွဲ</th>
-                                <th class="p-4">အခြေအနေ</th>
-                                <th class="p-4 text-right">လုပ်ဆောင်ချက် (Action)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="accountsTableBody" class="divide-y divide-slate-800/60 text-sm">
-                            <!-- Dynamic rows -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Empty State for Accounts -->
-            <div id="accountsEmptyState" class="hidden flex flex-col items-center justify-center py-16 text-center">
-                <div class="bg-slate-800/50 p-6 rounded-full text-slate-600 mb-4 border border-slate-700/50">
-                    <i class="fa-solid fa-boxes-packing text-4xl"></i>
-                </div>
-                <h3 class="text-lg font-semibold text-slate-300 mb-1">အကောင့်မှတ်တမ်း မရှိသေးပါ</h3>
-                <p class="text-sm text-slate-500 max-w-sm mb-6">အကောင့်အသစ် ဝယ်ယူထားသည်များကို စတင်မှတ်သားရန် အောက်ပါခလုတ်ကို နှိပ်ပါ။</p>
-                <button onclick="openAddModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition shadow-lg shadow-blue-600/30">
-                    <i class="fa-solid fa-plus mr-2"></i>အကောင့်အသစ် ထည့်မည်
-                </button>
-            </div>
-        </div>
-
-        <!-- ================= TAB 3: OUT HISTORY ================= -->
-        <div id="tab-history" class="space-y-6 hidden">
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                    <h3 class="font-bold text-lg text-white">အရောင်းမှတ်တမ်းများ (OUT History)</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">ရောင်းချပြီးသား အကောင့်များအားလုံးနှင့် အမြတ်ငွေစာရင်းများ</p>
-                </div>
-                <div class="flex items-center space-x-3 bg-slate-900 px-4 py-2.5 rounded-xl border border-slate-700 text-xs">
-                    <span class="text-slate-400">စုစုပေါင်း ရောင်းပြီး:</span>
-                    <span id="historyTotalCount" class="font-bold text-emerald-400 text-sm">0 အကောင့်</span>
-                </div>
-            </div>
-
-            <div class="bg-cardBg border border-slate-800 rounded-2xl overflow-hidden shadow-sm">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-900/80 border-b border-slate-800 text-xs font-semibold text-slate-400">
-                                <th class="p-4">Account ID & Gmail</th>
-                                <th class="p-4">ဂိမ်းအမည်</th>
-                                <th class="p-4">ဝယ်ဈေး</th>
-                                <th class="p-4">ရောင်းဈေး</th>
-                                <th class="p-4">အမြတ် (Profit)</th>
-                                <th class="p-4">ရောင်းချသည့်ရက်</th>
-                                <th class="p-4 text-right">ပြုပြင်ရန်</th>
-                            </tr>
-                        </thead>
-                        <tbody id="historyTableBody" class="divide-y divide-slate-800/60 text-sm">
-                            <!-- Dynamic history rows -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- History Summary Footer Card -->
-            <div id="historySummaryFooter" class="bg-cardBg border border-slate-800 rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                    <p class="text-xs text-slate-400">စုစုပေါင်း ရောင်းချပြီး အကောင့်</p>
-                    <h4 id="footSoldAccounts" class="text-xl font-bold text-white mt-1">0 အကောင့်</h4>
-                </div>
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                    <p class="text-xs text-slate-400">စုစုပေါင်း ဝင်ငွေ (Revenue)</p>
-                    <h4 id="footRevenue" class="text-xl font-bold text-blue-400 mt-1">0 MMK</h4>
-                </div>
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
-                    <p class="text-xs text-slate-400">စုစုပေါင်း အမြတ် (Total Profit)</p>
-                    <h4 id="footProfit" class="text-xl font-bold text-emerald-400 mt-1">0 MMK</h4>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= TAB 4: DAILY REPORTS ================= -->
-        <div id="tab-reports" class="space-y-6 hidden">
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div>
-                    <h3 class="font-bold text-lg text-white">နေ့စွဲအလိုက် အစီရင်ခံစာ (Daily Report)</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">လိုချင်သော ရက်စွဲကို ရွေးချယ်ပြီး ထိုနေ့၏ ဝင်ငွေနှင့် အမြတ်ငွေများကို ကြည့်ရှုပါ။</p>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <input type="date" id="reportDateInput" onchange="loadDailyReport()" class="bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-blue-500">
-                </div>
-            </div>
-
-            <!-- Report Cards for Selected Date -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                    <p class="text-xs font-medium text-slate-400">ထိုနေ့ ဝယ်ယူခဲ့မှု (IN)</p>
-                    <h3 id="repInCount" class="text-2xl font-bold text-white mt-1">0</h3>
-                </div>
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                    <p class="text-xs font-medium text-slate-400">ထိုနေ့ ရောင်းချခဲ့မှု (OUT)</p>
-                    <h3 id="repOutCount" class="text-2xl font-bold text-emerald-400 mt-1">0</h3>
-                </div>
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                    <p class="text-xs font-medium text-slate-400">ထိုနေ့ ဝင်ငွေ (Revenue)</p>
-                    <h3 id="repRevenue" class="text-xl font-bold text-blue-400 mt-1">0 MMK</h3>
-                </div>
-                <div class="bg-cardBg border border-slate-800 rounded-2xl p-4">
-                    <p class="text-xs font-medium text-slate-400">ထိုနေ့ အမြတ် (Profit)</p>
-                    <h3 id="repProfit" class="text-xl font-bold text-emerald-400 mt-1">0 MMK</h3>
-                </div>
-            </div>
-
-            <!-- Out Accounts on Selected Date -->
-            <div class="bg-cardBg border border-slate-800 rounded-2xl p-5">
-                <h4 class="font-bold text-base text-slate-200 mb-4">ရွေးချယ်ထားသောနေ့တွင် ရောင်းချခဲ့ရသော အကောင့်များ</h4>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-900/80 border-b border-slate-800 text-xs font-semibold text-slate-400">
-                                <th class="p-3">Account ID / Gmail</th>
-                                <th class="p-3">ဂိမ်းအမည်</th>
-                                <th class="p-3">ဝယ်ဈေး</th>
-                                <th class="p-3">ရောင်းဈေး</th>
-                                <th class="p-3">အမြတ်</th>
-                            </tr>
-                        </thead>
-                        <tbody id="reportTableBody" class="divide-y divide-slate-800/60 text-sm">
-                            <!-- dynamic report items -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+            <!-- Admin Reset Button -->
+            <button onclick="promptResetPassword()" class="mt-4 text-xs text-rosepink/50 hover:text-goldaccent transition-colors flex items-center space-x-1">
+                <i class="fa-solid fa-lock text-[10px]"></i>
+                <span>Reset Spin Limit</span>
+            </button>
+        </section>
 
     </main>
 
-    <!-- ================= MODAL: ADD / EDIT ACCOUNT ================= -->
-    <div id="accountModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-lg overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200">
-            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-                <h3 id="modalTitle" class="font-bold text-lg text-white">အကောင့်အသစ် ထည့်သွင်းရန် (ADD ACCOUNT)</h3>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-2 transition">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
+    <!-- WINNING CELEBRATION MODAL POPUP -->
+    <div id="winnerModal" class="fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+        <!-- Confetti Canvas Background -->
+        <canvas id="confettiCanvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
+
+        <div class="glass-card relative z-20 w-full max-w-md rounded-3xl p-6 sm:p-8 text-center border-2 border-goldaccent transform scale-90 transition-transform duration-500" id="modalCard">
+            <!-- Heart Graphic Header -->
+            <div class="w-20 h-20 mx-auto -mt-14 mb-4 rounded-full bg-gradient-to-tr from-deeprose to-goldaccent flex items-center justify-center shadow-xl border-4 border-darkmagenta">
+                <i class="fa-solid fa-gift text-3xl text-white animate-bounce"></i>
             </div>
-            <form id="accountForm" onsubmit="saveAccount(event)" class="p-6 space-y-4">
-                <input type="hidden" id="docId">
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">Account ID <span class="text-red-400">*</span></label>
-                        <input type="text" id="accountIdInput" required placeholder="ဥပမာ - ACC001" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition font-mono">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">Gmail လိပ်စာ <span class="text-red-400">*</span></label>
-                        <input type="email" id="gmailInput" required placeholder="example@gmail.com" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">ဝယ်ဈေး (Buying Price in MMK) <span class="text-red-400">*</span></label>
-                        <input type="number" id="buyingPriceInput" required min="0" placeholder="10000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">ဝယ်ယူသည့်ရက်စွဲ (Date Added)</label>
-                        <input type="date" id="dateAddedInput" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">ဂိမ်းအမည် (Game Name)</label>
-                        <input type="text" id="gameNameInput" value="eFootball" placeholder="eFootball / Mobile Legends" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1.5">ဂိမ်းထဲက အကောင့်နာမည် (IGN)</label>
-                        <input type="text" id="ignInput" placeholder="In-game Name / ID" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1.5">မှတ်စုများ (Notes / Password)</label>
-                    <textarea id="notesInput" rows="2" placeholder="စကားဝှက် သို့မဟုတ် အချက်အလက်များ..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition resize-none"></textarea>
-                </div>
-
-                <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-800">
-                    <button type="button" onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-xl text-sm font-medium transition">ပယ်ဖျက်မည်</button>
-                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-lg shadow-blue-600/30">သိမ်းဆည်းမည်</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ================= MODAL: OUT (SELL ACCOUNT) ================= -->
-    <div id="outModal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-cardBg border border-slate-800 rounded-2xl w-full max-w-md overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-200 p-6">
-            <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
-                <h3 class="font-bold text-lg text-white flex items-center space-x-2">
-                    <i class="fa-solid fa-arrow-up-right-from-square text-emerald-400"></i>
-                    <span>အကောင့်ရောင်းချမည် (OUT)</span>
-                </h3>
-                <button onclick="closeOutModal()" class="text-slate-400 hover:text-white p-1">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
+            <h3 class="font-cursive text-3xl sm:text-3xl font-bold text-rosepink mb-1">
+                Yayyy! Congratulations, Babe! 💗
+            </h3>
             
-            <form id="outForm" onsubmit="confirmOutAccount(event)" class="space-y-4">
-                <input type="hidden" id="outDocId">
+            <p class="font-myanmar text-xs text-champagne/80 mb-4">
                 
-                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
-                    <div class="flex justify-between">
-                        <span class="text-slate-400">Account ID:</span>
-                        <span id="outDisplayId" class="font-bold font-mono text-white text-sm">ACC001</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-400">Gmail:</span>
-                        <span id="outDisplayGmail" class="font-mono text-slate-200">example@gmail.com</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-400">ဝယ်ဈေး (Buying Price):</span>
-                        <span id="outDisplayBuying" class="font-bold text-amber-400 text-sm">0 MMK</span>
-                    </div>
-                </div>
+            </p>
 
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1.5">ရောင်းဈေး (Selling Price in MMK) <span class="text-red-400">*</span></label>
-                    <input type="number" id="sellingPriceInput" required min="0" oninput="calculateModalProfit()" placeholder="20000" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-base font-bold text-emerald-400 focus:outline-none focus:border-emerald-500 transition">
-                </div>
+            <!-- Prize Amount Box -->
+            <div class="bg-darkmagenta/60 border border-goldaccent/50 rounded-2xl p-4 my-4 shadow-inner">
+                <span id="prizeDisplay" class="font-bold text-3xl sm:text-4xl text-goldaccent tracking-wide drop-shadow">
+                    100,000 MMK
+                </span>
+            </div>
 
-                <div class="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                        <p class="text-xs text-slate-400">တွက်ချက်ပြီး အမြတ် (Auto Profit):</p>
-                        <h4 id="outDisplayProfit" class="text-xl font-bold text-emerald-400 mt-0.5">+0 MMK</h4>
-                    </div>
-                    <div id="profitBadgeIcon" class="bg-emerald-500/20 text-emerald-400 p-2.5 rounded-xl">
-                        <i class="fa-solid fa-chart-line text-lg"></i>
-                    </div>
-                </div>
+            <!-- Romantic Burmese Message -->
+            <p class="font-myanmar text-sm text-softcream/90 leading-relaxed my-4 px-2">
+                "သီတင်းကျွတ်မှာလည်း ချစ်တယ် !"
+            </p>
 
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1.5">ရောင်းချသည့်ရက် (Out Date)</label>
-                    <input type="date" id="outDateInput" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500 transition">
-                </div>
-
-                <div class="flex items-center justify-end space-x-3 pt-4 border-t border-slate-800">
-                    <button type="button" onclick="closeOutModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2.5 rounded-xl text-sm font-medium transition">ပယ်ဖျက်မည်</button>
-                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition shadow-lg shadow-emerald-600/30">CONFIRM OUT</button>
-                </div>
-            </form>
+            <!-- Action Button: Claim Gift -->
+            <button onclick="claimGift()" class="btn-romantic font-myanmar font-bold text-white text-base px-8 py-3.5 rounded-full w-full mt-2 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-hand-holding-heart text-goldaccent"></i>
+                <span>မုန့်ဖိုးလေးထုတ်လို့ရပါပီ</span>
+            </button>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-xl flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
-        <i id="toastIcon" class="fa-solid fa-circle-check"></i>
-        <span id="toastMessage" class="text-sm font-medium">အောင်မြင်ပါသည်</span>
+    <!-- FINAL AFFECTIONATE MESSAGE OVERLAY -->
+    <div id="finalMessageModal" class="fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-500">
+        <div class="glass-card relative z-20 w-full max-w-md rounded-3xl p-8 text-center border border-rosepink/50">
+            <i class="fa-solid fa-heart text-5xl text-deeprose mb-4 animate-pulse"></i>
+            <h4 class="font-cursive text-3xl text-goldaccent mb-3">Forever Yours !</h4>
+            <p id="finalMessageText" class="font-myanmar text-base text-softcream leading-relaxed mb-6">
+                ပျော်ရွှင်စရာသီတင်းကျွတ်လေး ဖြစ်ပါစေ မမ ... 💓 🪔
+            </p>
+            <button onclick="closeFinalModal()" class="glass-card px-6 py-2.5 rounded-full text-xs text-champagne hover:text-white hover:border-goldaccent transition-all flex items-center justify-center space-x-2 mx-auto">
+                <i class="fa-brands text-sm text-sky-400"></i>
+                <span>မုန့်ဖိုးလေးကို ဒီမှာထုတ်ပါ..</span>
+            </button>
+        </div>
     </div>
 
-    <!-- Firebase SDKs and App Logic -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- RESET PASSWORD MODAL -->
+    <div id="resetModal" class="fixed inset-0 modal-backdrop z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card relative z-20 w-full max-w-sm rounded-3xl p-6 text-center border border-goldaccent/50">
+            <h4 class="font-cursive text-2xl text-goldaccent mb-2">Reset Spin Limit 🔑</h4>
+            <p class="font-myanmar text-xs text-softcream/80 mb-4">
+                ပြန်လည်လှည့်ခွင့်ပြုရန် Password ရိုက်ထည့်ပါ
+            </p>
+            <input type="password" id="resetPasswordInput" placeholder="Enter Password..." class="w-full px-4 py-2 rounded-xl bg-darkmagenta/80 border border-goldaccent/40 text-center text-softcream focus:outline-none focus:border-goldaccent mb-3 text-sm">
+            <p id="resetErrMsg" class="font-myanmar text-xs text-deeprose hidden mb-3">Password မှားယွင်းနေပါသည်။</p>
+            <div class="flex space-x-2">
+                <button onclick="closeResetModal()" class="w-1/2 glass-card py-2 rounded-xl text-xs text-champagne hover:text-white">Cancel</button>
+                <button onclick="verifyResetPassword()" class="w-1/2 btn-romantic py-2 rounded-xl text-xs text-white font-bold">Reset</button>
+            </div>
+        </div>
+    </div>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBFmghuLr3KjKSkMncvn-D-Fsh2b4XmToc",
-            authDomain: "chelseaefootball-14f7a.firebaseapp.com",
-            projectId: "chelseaefootball-14f7a",
-            storageBucket: "chelseaefootball-14f7a.firebasestorage.app",
-            messagingSenderId: "225885080038",
-            appId: "1:225885080038:web:834b89fb28e1b7a519ae27",
-            measurementId: "G-77L7JWJT40"
+    <!-- FOOTER -->
+    <footer class="w-full max-w-4xl text-center py-4 text-xs font-myanmar text-champagne/60 z-20">
+        နောင်နှစ်တွေမှာလည်း အမြဲအတူရှိသွားပြီး ဒီလိုနေ့ရက်တိုင်းမှာ အနားမှာ ရှိနေချင်ပါတယ် .. 💖
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* ====================================================================
+           1. GLOBAL CONFIGURATION & PRIZE SEGMENTS
+           ==================================================================== */
+        const prizes = [
+            { label: "Next Time", val: 0,      bg: "#FFD1DC", text: "#4A154B", isNextTime: true },
+            { label: "30,000 MMK",   val: 30000,  bg: "#FFF3B0", text: "#4A154B" },
+            { label: "50,000 MMK",   val: 50000,  bg: "#E8AEB7", text: "#4A154B" },
+            { label: "100,000 MMK",   val: 100000,  bg: "#B8E0D2", text: "#4A154B" },
+            { label: "150,000 MMK",  val: 150000, bg: "#D6E2E9", text: "#4A154B" }
+        ];
+
+        const numSegments = prizes.length;
+        const segmentAngle = (2 * Math.PI) / numSegments; // 72 degrees per segment in radians
+
+        // Canvas & State Variables
+        let canvas, ctx;
+        let isSpinning = false;
+        let currentRotation = 0; // Cumulative angle in radians
+        let winningIndex = 0;
+        let isAudioMuted = true;
+        let audioCtx = null;
+
+        /* ====================================================================
+           2. INITIALIZATION & CANVAS DRAWING LOGIC
+           ==================================================================== */
+        window.onload = function() {
+            canvas = document.getElementById("wheelCanvas");
+            ctx = canvas.getContext("2d");
+
+            // Setup floating hearts background
+            createFloatingHearts();
+
+            // Draw Initial Wheel
+            drawWheel(0);
+
+            // Check if already spun previously
+            checkHasSpun();
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
+        function checkHasSpun() {
+            const hasSpun = localStorage.getItem("thadingyut_has_spun");
+            const spinBtn = document.getElementById("spinBtn");
+            const spinNotice = document.getElementById("spinNotice");
 
-        let accounts = [];
-        let currentTab = 'dashboard';
-        let currentAccountFilter = 'all';
-        let currentDashboardPeriod = 'today';
-        let activeOutAccount = null;
-
-        async function initFirebase() {
-            try {
-                await signInAnonymously(auth);
-                const syncBadge = document.getElementById('syncStatus');
-                syncBadge.className = 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2 py-0.5 rounded-full flex items-center space-x-1';
-                syncBadge.innerHTML = '<i class="fa-solid fa-circle text-[6px]"></i><span>Cloud ချိတ်ဆက်ပြီး</span>';
-
-                startRealtimeSync();
-            } catch (err) {
-                console.error("Auth error:", err);
-                const syncBadge = document.getElementById('syncStatus');
-                syncBadge.className = 'bg-red-500/10 text-red-400 border border-red-500/20 text-[10px] px-2 py-0.5 rounded-full flex items-center space-x-1';
-                syncBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-[8px]"></i><span>ချိတ်ဆက်မှု မအောင်မြင်ပါ</span>';
+            if (hasSpun === "true") {
+                spinBtn.disabled = true;
+                spinBtn.classList.add("opacity-50", "cursor-not-allowed");
+                spinNotice.innerText = "";
             }
         }
 
-        function startRealtimeSync() {
-            const colRef = collection(db, 'efootball_accounts_vault');
+        // Render Canvas Wheel with exact mathematical segments
+        function drawWheel(rotationAngle) {
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerX = width / 2;
+            const centerY = height / 2;
+            const radius = width / 2 - 12; // Leave margin for outer gold ring
 
-            onSnapshot(colRef, (snapshot) => {
-                accounts = [];
-                snapshot.forEach((docSnap) => {
-                    accounts.push({ id: docSnap.id, ...docSnap.data() });
-                });
+            ctx.clearRect(0, 0, width, height);
 
-                refreshAllViews();
-            }, (error) => {
-                console.error("Firestore sync error:", error);
-            });
+            // Save canvas context state for rotation transformation
+            ctx.save();
+            ctx.translate(centerX, centerY);
+            ctx.rotate(rotationAngle);
+
+            // Draw Segments
+            for (let i = 0; i < numSegments; i++) {
+                const startAngle = i * segmentAngle - Math.PI / 2;
+                const endAngle = startAngle + segmentAngle;
+
+                // Draw Slice
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, radius, startAngle, endAngle);
+                ctx.closePath();
+
+                ctx.fillStyle = prizes[i].bg;
+                ctx.fill();
+
+                // Slice Gold Border
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = "#D4AF37";
+                ctx.stroke();
+
+                // Draw Text & Inner Details
+                ctx.save();
+                ctx.rotate(startAngle + segmentAngle / 2);
+                ctx.textAlign = "right";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = prizes[i].text;
+                ctx.font = "bold 16px 'Poppins', 'Noto Sans Myanmar', sans-serif";
+                
+                // Position Prize Text inside slice
+                ctx.fillText(prizes[i].label, radius - 25, 0);
+
+                // Add small heart icon next to text inside segment
+                ctx.font = "12px 'Font Awesome 6 Free'";
+                ctx.fillText(" \uf004", radius - 10, 0);
+
+                ctx.restore();
+            }
+
+            ctx.restore(); // Restore angle transform
+
+            // Draw Outer Decorative Gold Ring
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius + 4, 0, 2 * Math.PI);
+            ctx.lineWidth = 8;
+            ctx.strokeStyle = "rgba(212, 175, 55, 0.9)";
+            ctx.stroke();
+
+            // Draw Outer Dots Accent on Rim
+            for (let a = 0; a < 360; a += 15) {
+                const rad = (a * Math.PI) / 180;
+                const dotX = centerX + (radius + 4) * Math.cos(rad);
+                const dotY = centerY + (radius + 4) * Math.sin(rad);
+
+                ctx.beginPath();
+                ctx.arc(dotX, dotY, 2.5, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFDD0";
+                ctx.fill();
+            }
+
+            // Draw Center Decorative Knob (Heart Badge)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 38, 0, 2 * Math.PI);
+            ctx.fillStyle = "#4A154B";
+            ctx.fill();
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = "#D4AF37";
+            ctx.stroke();
+
+            // Center Heart Icon
+            ctx.fillStyle = "#FFB6C1";
+            ctx.font = "bold 22px 'Font Awesome 6 Free'";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("\uf004", centerX, centerY + 1);
         }
 
-        window.onload = function() {
-            const todayStr = new Date().toISOString().slice(0,10);
-            document.getElementById('dateAddedInput').value = todayStr;
-            document.getElementById('outDateInput').value = todayStr;
-            document.getElementById('reportDateInput').value = todayStr;
+        /* ====================================================================
+           3. MATHEMATICALLY ACCURATE SPIN LOGIC
+           ==================================================================== */
+        function spinWheel() {
+            if (isSpinning) return;
+            if (localStorage.getItem("thadingyut_has_spun") === "true") {
+                document.getElementById("spinNotice").innerText = "";
+                return;
+            }
+            isSpinning = true;
 
-            initFirebase();
-        };
+            // Enable audio context on click interaction
+            initAudio();
 
-        window.switchTab = function(tabName) {
-            currentTab = tabName;
-            ['dashboard', 'accounts', 'history', 'reports'].forEach(t => {
-                const el = document.getElementById(`tab-${t}`);
-                const deskBtn = document.getElementById(`nav-${t}`);
-                const mobBtn = document.getElementById(`mobnav-${t}`);
+            // Disable Button state during animation
+            const spinBtn = document.getElementById("spinBtn");
+            const spinNotice = document.getElementById("spinNotice");
+            spinBtn.disabled = true;
+            spinBtn.classList.add("opacity-50", "cursor-not-allowed");
+            spinNotice.innerText = "";
 
-                if (t === tabName) {
-                    el.classList.remove('hidden');
-                    if(deskBtn) deskBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold transition bg-blue-600 text-white shadow';
-                    if(mobBtn) mobBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-blue-600 text-white';
-                } else {
-                    el.classList.add('hidden');
-                    if(deskBtn) deskBtn.className = 'px-4 py-2 rounded-lg text-xs font-semibold transition text-slate-400 hover:text-white';
-                    if(mobBtn) mobBtn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-slate-400';
+            // Allowed Prize Indices: Only index 0 (Next Time), 1 (30,000), 2 (50,000)
+            const allowedIndices = [0, 1, 2];
+            winningIndex = allowedIndices[Math.floor(Math.random() * allowedIndices.length)];
+
+            // If it's NOT Next Time, set the limit in localStorage
+            if (!prizes[winningIndex].isNextTime) {
+                localStorage.setItem("thadingyut_has_spun", "true");
+            }
+
+            // 2. Exact Angle Calculation
+            // Top pointer is located at angle -Math.PI / 2 (or 270 deg)
+            const targetSegmentCenter = winningIndex * segmentAngle + segmentAngle / 2;
+            
+            // To align targetSegmentCenter with top pointer:
+            let targetAngle = (2 * Math.PI) - targetSegmentCenter;
+
+            // Ensure currentRotation continues forward fluidly
+            const currentMod = currentRotation % (2 * Math.PI);
+            const fullRotations = (5 + Math.floor(Math.random() * 3)) * (2 * Math.PI); // 5 to 7 full rotations
+
+            // Total target rotation angle
+            const finalRotation = currentRotation + (2 * Math.PI - currentMod) + targetAngle + fullRotations;
+
+            const duration = 5000; // 5 seconds spin animation duration
+            const startTime = performance.now();
+            let lastTickSegment = -1;
+
+            // Animation Frame Function (Easing)
+            function animateSpin(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Cubic Ease Out function for smooth gradual slowdown
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                const angleNow = currentRotation + (finalRotation - currentRotation) * easeOut;
+                drawWheel(angleNow);
+
+                // Calculate current segment passing pointer for audio tick sound
+                const normalizedAngle = (2 * Math.PI - (angleNow % (2 * Math.PI))) % (2 * Math.PI);
+                const currentSegmentPassed = Math.floor(normalizedAngle / segmentAngle);
+
+                if (currentSegmentPassed !== lastTickSegment) {
+                    playTickSound();
+                    lastTickSegment = currentSegmentPassed;
                 }
-            });
-            refreshAllViews();
-        };
 
-        window.refreshAllViews = function() {
-            renderDashboard();
-            renderAccountsTable();
-            renderHistoryTable();
-            loadDailyReport();
-        };
-
-        // ================= ADD / EDIT ACCOUNT =================
-        window.openAddModal = function() {
-            document.getElementById('modalTitle').innerText = 'အကောင့်အသစ် ထည့်သွင်းရန် (ADD ACCOUNT)';
-            document.getElementById('accountForm').reset();
-            document.getElementById('docId').value = '';
-            document.getElementById('dateAddedInput').value = new Date().toISOString().slice(0,10);
-            document.getElementById('gameNameInput').value = 'eFootball';
-            document.getElementById('accountModal').classList.remove('hidden');
-        };
-
-        window.closeModal = function() {
-            document.getElementById('accountModal').classList.add('hidden');
-        };
-
-        window.saveAccount = async function(e) {
-            e.preventDefault();
-
-            const docId = document.getElementById('docId').value;
-            const accountId = document.getElementById('accountIdInput').value.trim();
-            const gmail = document.getElementById('gmailInput').value.trim().toLowerCase();
-            const buyingPrice = Number(document.getElementById('buyingPriceInput').value);
-            const dateAdded = document.getElementById('dateAddedInput').value;
-            const gameName = document.getElementById('gameNameInput').value.trim() || 'eFootball';
-            const ign = document.getElementById('ignInput').value.trim();
-            const notes = document.getElementById('notesInput').value.trim();
-
-            const payload = {
-                accountId,
-                gmail,
-                buyingPrice,
-                dateAdded,
-                gameName,
-                ign,
-                notes,
-                status: 'IN',
-                sellingPrice: 0,
-                profit: 0,
-                outDate: ''
-            };
-
-            if (docId) {
-                // Editing existing account while keeping OUT states if any
-                const existing = accounts.find(a => a.id === docId);
-                if (existing) {
-                    payload.status = existing.status;
-                    payload.sellingPrice = existing.sellingPrice;
-                    payload.profit = existing.profit;
-                    payload.outDate = existing.outDate;
-                    if(existing.status === 'OUT') {
-                        payload.profit = payload.sellingPrice - buyingPrice;
+                if (progress < 1) {
+                    requestAnimationFrame(animateSpin);
+                } else {
+                    // Spin finished
+                    currentRotation = finalRotation;
+                    drawWheel(currentRotation);
+                    isSpinning = false;
+                    
+                    if (prizes[winningIndex].isNextTime) {
+                        // Re-enable spin button and inform user
+                        spinBtn.disabled = false;
+                        spinBtn.classList.remove("opacity-50", "cursor-not-allowed");
+                        spinNotice.innerText = "One More Time Babe! 💖";
+                    } else {
+                        // Show Winner Celebration
+                        setTimeout(showWinnerModal, 400);
                     }
                 }
-                const docRef = doc(db, 'efootball_accounts_vault', docId);
-                await updateDoc(docRef, payload);
-                showToast('အကောင့်အချက်အလက် ပြင်ဆင်ပြီးပါပြီ');
-            } else {
-                const newDocId = 'acc_' + Date.now();
-                const docRef = doc(db, 'efootball_accounts_vault', newDocId);
-                await setDoc(docRef, payload);
-                showToast('အကောင့်အသစ် အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ (IN)');
             }
 
-            closeModal();
-        };
+            requestAnimationFrame(animateSpin);
+        }
 
-        window.editAccount = function(id) {
-            const acc = accounts.find(a => a.id === id);
-            if (!acc) return;
+        /* ====================================================================
+           4. WINNING CELEBRATION & MODAL CONTROLS
+           ==================================================================== */
+        function showWinnerModal() {
+            const prize = prizes[winningIndex];
+            document.getElementById("prizeDisplay").innerText = prize.label;
 
-            document.getElementById('modalTitle').innerText = 'အကောင့်အချက်အလက် ပြင်ဆင်ရန်';
-            document.getElementById('docId').value = acc.id;
-            document.getElementById('accountIdInput').value = acc.accountId || '';
-            document.getElementById('gmailInput').value = acc.gmail || '';
-            document.getElementById('buyingPriceInput').value = acc.buyingPrice || 0;
-            document.getElementById('dateAddedInput').value = acc.dateAdded || new Date().toISOString().slice(0,10);
-            document.getElementById('gameNameInput').value = acc.gameName || 'eFootball';
-            document.getElementById('ignInput').value = acc.ign || '';
-            document.getElementById('notesInput').value = acc.notes || '';
-
-            document.getElementById('accountModal').classList.remove('hidden');
-        };
-
-        window.deleteAccount = async function(id) {
-            if (confirm('ဤအကောင့်မှတ်တမ်းကို အပြီးတိုင် ဖျက်ရန် သေချာပါသလား?')) {
-                const docRef = doc(db, 'efootball_accounts_vault', id);
-                await deleteDoc(docRef);
-                showToast('အကောင့်ကို ဖျက်ပြီးပါပြီ', 'fa-circle-exclamation');
-            }
-        };
-
-        // ================= OUT WORKFLOW =================
-        window.openOutModal = function(id) {
-            const acc = accounts.find(a => a.id === id);
-            if (!acc) return;
-
-            activeOutAccount = acc;
-            document.getElementById('outDocId').value = acc.id;
-            document.getElementById('outDisplayId').innerText = acc.accountId;
-            document.getElementById('outDisplayGmail').innerText = acc.gmail;
-            document.getElementById('outDisplayBuying').innerText = formatMMK(acc.buyingPrice);
-            document.getElementById('sellingPriceInput').value = '';
-            document.getElementById('outDisplayProfit').innerText = '+0 MMK';
-            document.getElementById('outDateInput').value = new Date().toISOString().slice(0,10);
-
-            document.getElementById('outModal').classList.remove('hidden');
-        };
-
-        window.closeOutModal = function() {
-            document.getElementById('outModal').classList.add('hidden');
-            activeOutAccount = null;
-        };
-
-        window.calculateModalProfit = function() {
-            if (!activeOutAccount) return;
-            const sellingPrice = Number(document.getElementById('sellingPriceInput').value) || 0;
-            const buyingPrice = activeOutAccount.buyingPrice;
-            const profit = sellingPrice - buyingPrice;
-
-            const profitEl = document.getElementById('outDisplayProfit');
-            if (profit >= 0) {
-                profitEl.innerText = '+' + formatMMK(profit);
-                profitEl.className = 'text-xl font-bold text-emerald-400 mt-0.5';
-            } else {
-                profitEl.innerText = formatMMK(profit);
-                profitEl.className = 'text-xl font-bold text-red-400 mt-0.5';
-            }
-        };
-
-        window.confirmOutAccount = async function(e) {
-            e.preventDefault();
-            if (!activeOutAccount) return;
-
-            const sellingPrice = Number(document.getElementById('sellingPriceInput').value);
-            const outDate = document.getElementById('outDateInput').value;
-            const profit = sellingPrice - activeOutAccount.buyingPrice;
-
-            const docRef = doc(db, 'efootball_accounts_vault', activeOutAccount.id);
-            await updateDoc(docRef, {
-                status: 'OUT',
-                sellingPrice,
-                profit,
-                outDate
-            });
-
-            closeOutModal();
-            showToast('အကောင့်ရောင်းချခြင်း (OUT) အောင်မြင်ပါသည်!');
-        };
-
-        window.undoOutAccount = async function(id) {
-            if (confirm('ဤအကောင့်၏ ရောင်းချမှုကို ပြန်ဖျက်ပြီး စတော့ထဲသို့ (IN) သို့ ပြန်ထည့်ရန် သေချာပါသလား?')) {
-                const docRef = doc(db, 'efootball_accounts_vault', id);
-                await updateDoc(docRef, {
-                    status: 'IN',
-                    sellingPrice: 0,
-                    profit: 0,
-                    outDate: ''
-                });
-                showToast('အကောင့်ကို စတော့ (IN) သို့ ပြန်လည်ပို့ဆောင်ပြီးပါပြီ', 'fa-circle-exclamation');
-            }
-        };
-
-        // ================= DASHBOARD & PERIODS =================
-        window.setDashboardPeriod = function(period) {
-            currentDashboardPeriod = period;
-            ['today', 'yesterday', '7days', 'month', 'all'].forEach(p => {
-                const btn = document.getElementById(`period-${p}`);
-                if (p === period) {
-                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-medium bg-blue-600 text-white transition';
-                } else {
-                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition';
-                }
-            });
-
-            const badgeTitles = {
-                'today': 'ယနေ့ (Today\'s Performance)',
-                'yesterday': 'မနေ့က (Yesterday\'s Performance)',
-                '7days': 'နောက်ဆုံး ၇ ရက် (Last 7 Days)',
-                'month': 'ယခုလ (This Month\'s Performance)',
-                'all': 'စုစုပေါင်း ကာလအားလုံး (All Time)'
-            };
-            document.getElementById('periodTitleBadge').innerHTML = `<i class="fa-solid fa-bolt"></i><span>${badgeTitles[period]}</span>`;
-            renderDashboard();
-        };
-
-        function renderDashboard() {
-            const todayStr = new Date().toISOString().slice(0,10);
+            const modal = document.getElementById("winnerModal");
+            const modalCard = document.getElementById("modalCard");
             
-            // Filter accounts by period for OUT & IN
-            const periodFilteredOut = accounts.filter(acc => {
-                if (acc.status !== 'OUT' || !acc.outDate) return false;
-                return isDateInPeriod(acc.outDate, currentDashboardPeriod);
-            });
+            modal.classList.remove("opacity-0", "pointer-events-none");
+            modalCard.classList.remove("scale-90");
+            modalCard.classList.add("scale-100");
 
-            const periodFilteredIn = accounts.filter(acc => {
-                if (!acc.dateAdded) return false;
-                return isDateInPeriod(acc.dateAdded, currentDashboardPeriod);
-            });
+            // Play fanfare melody & start confetti animation
+            playWinSound();
+            startConfetti();
+        }
 
-            const inCount = periodFilteredIn.length;
-            const outCount = periodFilteredOut.length;
-            const revenue = periodFilteredOut.reduce((sum, a) => sum + (a.sellingPrice || 0), 0);
-            const profit = periodFilteredOut.reduce((sum, a) => sum + (a.profit || 0), 0);
+        function claimGift() {
+            const winnerModal = document.getElementById("winnerModal");
+            const finalModal = document.getElementById("finalMessageModal");
 
-            document.getElementById('dashInCount').innerText = inCount;
-            document.getElementById('dashOutCount').innerText = outCount;
-            document.getElementById('dashRevenue').innerText = formatMMK(revenue);
+            winnerModal.classList.add("opacity-0", "pointer-events-none");
             
-            const profitEl = document.getElementById('dashProfit');
-            profitEl.innerText = formatMMK(profit);
-            profitEl.className = profit >= 0 ? 'text-xl font-bold text-emerald-400 mt-1' : 'text-xl font-bold text-red-400 mt-1';
-
-            // All-time totals
-            const totalAccs = accounts.length;
-            const availableAccs = accounts.filter(a => a.status === 'IN').length;
-            const totalSoldAccs = accounts.filter(a => a.status === 'OUT').length;
-            const allRevenue = accounts.filter(a => a.status === 'OUT').reduce((sum, a) => sum + (a.sellingPrice || 0), 0);
-            const allProfit = accounts.filter(a => a.status === 'OUT').reduce((sum, a) => sum + (a.profit || 0), 0);
-            const inventoryCost = accounts.filter(a => a.status === 'IN').reduce((sum, a) => sum + (a.buyingPrice || 0), 0);
-
-            document.getElementById('totTotalAccs').innerText = totalAccs;
-            document.getElementById('totAvailable').innerText = availableAccs;
-            document.getElementById('totSold').innerText = totalSoldAccs;
-            document.getElementById('totRevenue').innerText = formatMMK(allRevenue);
-            document.getElementById('totProfit').innerText = formatMMK(allProfit);
-            document.getElementById('invCost').innerText = formatMMK(inventoryCost);
-        }
-
-        function isDateInPeriod(dateStr, period) {
-            const d = new Date(dateStr);
-            const today = new Date();
-            today.setHours(0,0,0,0);
-
-            const target = new Date(d);
-            target.setHours(0,0,0,0);
-
-            if (period === 'today') {
-                return target.getTime() === today.getTime();
-            } else if (period === 'yesterday') {
-                const yest = new Date(today);
-                yest.setDate(yest.getDate() - 1);
-                return target.getTime() === yest.getTime();
-            } else if (period === '7days') {
-                const weekAgo = new Date(today);
-                weekAgo.setDate(weekAgo.getDate() - 7);
-                return target >= weekAgo && target <= today;
-            } else if (period === 'month') {
-                return target.getMonth() === today.getMonth() && target.getFullYear() === today.getFullYear();
-            } else if (period === 'all') {
-                return true;
-            }
-            return false;
-        }
-
-        // ================= ACCOUNTS TABLE =================
-        window.setAccountFilter = function(filter) {
-            currentAccountFilter = filter;
-            ['all', 'in', 'out'].forEach(f => {
-                const btn = document.getElementById(`accfilter-${f}`);
-                if (f === filter) {
-                    btn.className = 'px-4 py-2 rounded-xl text-xs font-medium bg-blue-600 text-white transition whitespace-nowrap';
-                } else {
-                    btn.className = 'px-4 py-2 rounded-xl text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition whitespace-nowrap';
-                }
-            });
-            renderAccountsTable();
-        };
-
-        window.renderAccountsTable = function() {
-            const tbody = document.getElementById('accountsTableBody');
-            const emptyState = document.getElementById('accountsEmptyState');
-            const searchVal = (document.getElementById('searchInput').value || '').toLowerCase();
-
-            const filtered = accounts.filter(acc => {
-                const matchesSearch = (acc.accountId || '').toLowerCase().includes(searchVal) || 
-                                      (acc.gmail || '').toLowerCase().includes(searchVal) || 
-                                      (acc.ign || '').toLowerCase().includes(searchVal);
-                
-                if (currentAccountFilter === 'in') return matchesSearch && acc.status === 'IN';
-                if (currentAccountFilter === 'out') return matchesSearch && acc.status === 'OUT';
-                return matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            tbody.innerHTML = filtered.map(acc => {
-                const isOut = acc.status === 'OUT';
-                const statusBadge = isOut ? 
-                    `<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-lg text-xs font-medium inline-flex items-center space-x-1"><i class="fa-solid fa-check text-[10px]"></i><span>OUT (ရောင်းပြီး)</span></span>` :
-                    `<span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2.5 py-1 rounded-lg text-xs font-medium inline-flex items-center space-x-1"><i class="fa-solid fa-boxes-stacked text-[10px]"></i><span>IN (စတော့ရှိ)</span></span>`;
-
-                return `
-                    <tr class="hover:bg-slate-900/40 transition">
-                        <td class="p-4">
-                            <div class="font-bold text-white font-mono">${escapeHtml(acc.accountId)}</div>
-                            <div class="text-xs text-slate-400 font-mono">${escapeHtml(acc.gmail)}</div>
-                        </td>
-                        <td class="p-4">
-                            <div class="font-medium text-slate-200">${escapeHtml(acc.gameName)}</div>
-                            <div class="text-xs text-slate-400">IGN: ${escapeHtml(acc.ign || '-')}</div>
-                        </td>
-                        <td class="p-4">
-                            <div class="font-semibold text-amber-400 font-mono">${formatMMK(acc.buyingPrice)}</div>
-                        </td>
-                        <td class="p-4 font-mono">
-                            ${isOut ? `
-                                <div class="text-xs text-blue-400">ရောင်းဈေး: ${formatMMK(acc.sellingPrice)}</div>
-                                <div class="text-xs font-bold ${acc.profit >= 0 ? 'text-emerald-400' : 'text-red-400'}">အမြတ်: ${acc.profit >= 0 ? '+' : ''}${formatMMK(acc.profit)}</div>
-                            ` : `<span class="text-xs text-slate-500">-</span>`}
-                        </td>
-                        <td class="p-4 text-xs text-slate-400">
-                            <div>ဝယ်: ${escapeHtml(acc.dateAdded)}</div>
-                            ${isOut ? `<div>ရောင်း: ${escapeHtml(acc.outDate)}</div>` : ''}
-                        </td>
-                        <td class="p-4">${statusBadge}</td>
-                        <td class="p-4 text-right space-x-2">
-                            ${!isOut ? `
-                                <button onclick="openOutModal('${acc.id}')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition shadow-sm inline-flex items-center space-x-1">
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i><span>OUT</span>
-                                </button>
-                            ` : `
-                                <button onclick="undoOutAccount('${acc.id}')" class="bg-slate-800 hover:bg-amber-500/20 text-amber-400 px-2.5 py-1.5 rounded-lg text-xs font-medium transition inline-flex items-center space-x-1" title="Undo OUT">
-                                    <i class="fa-solid fa-rotate-left"></i><span>Undo</span>
-                                </button>
-                            `}
-                            <button onclick="editAccount('${acc.id}')" class="bg-slate-800 hover:bg-slate-700 text-blue-400 p-2 rounded-lg text-xs transition" title="ပြင်မည်">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button onclick="deleteAccount('${acc.id}')" class="bg-slate-800 hover:bg-red-500/20 text-slate-400 hover:text-red-400 p-2 rounded-lg text-xs transition" title="ဖျက်မည်">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        };
-
-        // ================= HISTORY TABLE =================
-        function renderHistoryTable() {
-            const tbody = document.getElementById('historyTableBody');
-            const soldAccounts = accounts.filter(a => a.status === 'OUT');
-
-            document.getElementById('historyTotalCount').innerText = `${soldAccounts.length} အကောင့်`;
-            document.getElementById('footSoldAccounts').innerText = `${soldAccounts.length} အਕောင့်`;
-
-            const totalRev = soldAccounts.reduce((sum, a) => sum + (a.sellingPrice || 0), 0);
-            const totalProf = soldAccounts.reduce((sum, a) => sum + (a.profit || 0), 0);
-
-            document.getElementById('footRevenue').innerText = formatMMK(totalRev);
-            const profEl = document.getElementById('footProfit');
-            profEl.innerText = formatMMK(totalProf);
-            profEl.className = totalProf >= 0 ? 'text-xl font-bold text-emerald-400 mt-1' : 'text-xl font-bold text-red-400 mt-1';
-
-            if (soldAccounts.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-500 text-sm">ရောင်းချပြီးသော အကောင့်မှတ်တမ်း မရှိသေးပါ။</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = soldAccounts.map(acc => `
-                <tr class="hover:bg-slate-900/40 transition">
-                    <td class="p-4">
-                        <div class="font-bold text-white font-mono">${escapeHtml(acc.accountId)}</div>
-                        <div class="text-xs text-slate-400 font-mono">${escapeHtml(acc.gmail)}</div>
-                    </td>
-                    <td class="p-4 text-slate-300">${escapeHtml(acc.gameName)} (${escapeHtml(acc.ign || '-')})</td>
-                    <td class="p-4 font-mono text-amber-400">${formatMMK(acc.buyingPrice)}</td>
-                    <td class="p-4 font-mono text-blue-400">${formatMMK(acc.sellingPrice)}</td>
-                    <td class="p-4 font-mono font-bold ${acc.profit >= 0 ? 'text-emerald-400' : 'text-red-400'}">
-                        ${acc.profit >= 0 ? '+' : ''}${formatMMK(acc.profit)}
-                    </td>
-                    <td class="p-4 text-xs text-slate-400">${escapeHtml(acc.outDate)}</td>
-                    <td class="p-4 text-right">
-                        <button onclick="undoOutAccount('${acc.id}')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-1.5 rounded-lg text-xs font-medium transition">
-                            <i class="fa-solid fa-rotate-left mr-1"></i> ပြန်ပြင်မည် (Undo)
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        // ================= DAILY REPORTS =================
-        window.loadDailyReport = function() {
-            const selectedDate = document.getElementById('reportDateInput').value;
-            if (!selectedDate) return;
-
-            const inList = accounts.filter(a => a.dateAdded === selectedDate);
-            const outList = accounts.filter(a => a.status === 'OUT' && a.outDate === selectedDate);
-
-            const rev = outList.reduce((sum, a) => sum + (a.sellingPrice || 0), 0);
-            const prof = outList.reduce((sum, a) => sum + (a.profit || 0), 0);
-
-            document.getElementById('repInCount').innerText = inList.length;
-            document.getElementById('repOutCount').innerText = outList.length;
-            document.getElementById('repRevenue').innerText = formatMMK(rev);
-            document.getElementById('repProfit').innerText = formatMMK(prof);
-
-            const tbody = document.getElementById('reportTableBody');
-            if (outList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-slate-500 text-sm">ရွေးချယ်ထားသောရက်စွဲ (${selectedDate}) တွင် ရောင်းချခဲ့သော အကောင့် မရှိပါ။</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = outList.map(acc => `
-                <tr class="hover:bg-slate-900/40 transition">
-                    <td class="p-3 font-mono">
-                        <div class="font-bold text-white">${escapeHtml(acc.accountId)}</div>
-                        <div class="text-xs text-slate-400">${escapeHtml(acc.gmail)}</div>
-                    </td>
-                    <td class="p-3 text-slate-300">${escapeHtml(acc.gameName)}</td>
-                    <td class="p-3 font-mono text-amber-400">${formatMMK(acc.buyingPrice)}</td>
-                    <td class="p-3 font-mono text-blue-400">${formatMMK(acc.sellingPrice)}</td>
-                    <td class="p-3 font-mono font-bold ${acc.profit >= 0 ? 'text-emerald-400' : 'text-red-400'}">${acc.profit >= 0 ? '+' : ''}${formatMMK(acc.profit)}</td>
-                </tr>
-            `).join('');
-        };
-
-        // ================= HELPERS =================
-        window.formatMMK = function(num) {
-            if (num === undefined || num === null) return '0 MMK';
-            return Number(num).toLocaleString() + ' MMK';
-        };
-
-        window.showToast = function(message, iconClass = 'fa-circle-check') {
-            const toast = document.getElementById('toast');
-            const msg = document.getElementById('toastMessage');
-            const icon = document.getElementById('toastIcon');
-
-            msg.innerText = message;
-            icon.className = `fa-solid ${iconClass}`;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-
             setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        };
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+                finalModal.classList.remove("opacity-0", "pointer-events-none");
+            }, 300);
         }
+
+        function closeFinalModal() {
+            const finalModal = document.getElementById("finalMessageModal");
+            finalModal.classList.add("opacity-0", "pointer-events-none");
+
+            // Notice text stays as completed
+            const spinNotice = document.getElementById("spinNotice");
+            spinNotice.innerText = "";
+
+            // Redirect to Telegram username link in a new tab
+            window.open("https://t.me/Profit_Zio", "_blank");
+        }
+
+        /* ====================================================================
+           PASSWORD RESET FUNCTIONS
+           ==================================================================== */
+        function promptResetPassword() {
+            const resetModal = document.getElementById("resetModal");
+            document.getElementById("resetPasswordInput").value = "";
+            document.getElementById("resetErrMsg").classList.add("hidden");
+            resetModal.classList.remove("opacity-0", "pointer-events-none");
+        }
+
+        function closeResetModal() {
+            const resetModal = document.getElementById("resetModal");
+            resetModal.classList.add("opacity-0", "pointer-events-none");
+        }
+
+        function verifyResetPassword() {
+            const inputPass = document.getElementById("resetPasswordInput").value;
+            if (inputPass === "CoeCoe") {
+                localStorage.removeItem("thadingyut_has_spun");
+                const spinBtn = document.getElementById("spinBtn");
+                const spinNotice = document.getElementById("spinNotice");
+                spinBtn.disabled = false;
+                spinBtn.classList.remove("opacity-50", "cursor-not-allowed");
+                spinNotice.innerText = "";
+                closeResetModal();
+            } else {
+                document.getElementById("resetErrMsg").classList.remove("hidden");
+            }
+        }
+
+        function revealSpinSection() {
+            playTickSound();
+            const welcomeScreen = document.getElementById("welcomeScreen");
+            const spinScreen = document.getElementById("spinScreen");
+
+            welcomeScreen.classList.add("opacity-0", "-translate-y-4");
+            
+            setTimeout(() => {
+                welcomeScreen.classList.add("hidden");
+                spinScreen.classList.remove("hidden");
+                // Trigger reflow for smooth fade-in animation
+                void spinScreen.offsetWidth;
+                spinScreen.classList.remove("opacity-0");
+            }, 500);
+        }
+
+        /* ====================================================================
+           5. AUDIO SYNTHESIZER (Web Audio API - No External Sound URLs Needed)
+           ==================================================================== */
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function toggleSound() {
+            initAudio();
+            isAudioMuted = !isAudioMuted;
+            const icon = document.getElementById("soundIcon");
+            const text = document.getElementById("soundText");
+
+            if (isAudioMuted) {
+                icon.className = "fa-solid fa-volume-xmark text-deeprose";
+                text.innerText = "Sound: Off";
+            } else {
+                icon.className = "fa-solid fa-volume-high text-goldaccent";
+                text.innerText = "Sound: On";
+                playTickSound();
+            }
+        }
+
+        function playTickSound() {
+            if (isAudioMuted || !audioCtx) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.04);
+                
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.04);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.04);
+            } catch (e) { console.error(e); }
+        }
+
+        function playWinSound() {
+            if (isAudioMuted || !audioCtx) return;
+            try {
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+                notes.forEach((freq, index) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.value = freq;
+
+                    const startTime = audioCtx.currentTime + index * 0.12;
+                    gain.gain.setValueAtTime(0.2, startTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.4);
+
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    osc.start(startTime);
+                    osc.stop(startTime + 0.4);
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        /* ====================================================================
+           6. VISUAL EFFECTS: FLOATING HEARTS & CONFETTI ENGINE
+           ==================================================================== */
+        function createFloatingHearts() {
+            const container = document.getElementById("hearts-container");
+            const heartIcons = ["❤️", "💖", "💗", "✨", "🌸"];
+
+            for (let i = 0; i < 18; i++) {
+                const heart = document.createElement("div");
+                heart.className = "floating-heart";
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+                heart.style.animationDelay = (Math.random() * 5) + "s";
+                container.appendChild(heart);
+            }
+        }
+
+        // Lightweight Canvas Confetti Generator
+        function startConfetti() {
+            const confettiCanvas = document.getElementById("confettiCanvas");
+            const cCtx = confettiCanvas.getContext("2d");
+            
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+
+            const particles = [];
+            const particleCount = 70;
+            const colors = ["#FFB6C1", "#FFFDD0", "#D4AF37", "#FF6B8B", "#E63946"];
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedY: Math.random() * 3 + 2,
+                    speedX: Math.random() * 2 - 1,
+                    rotation: Math.random() * 360,
+                    rotSpeed: Math.random() * 6 - 3
+                });
+            }
+
+            let confettiAnimationId;
+            const startTime = performance.now();
+
+            function renderConfetti(now) {
+                cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                
+                particles.forEach(p => {
+                    p.y += p.speedY;
+                    p.x += p.speedX;
+                    p.rotation += p.rotSpeed;
+
+                    cCtx.save();
+                    cCtx.translate(p.x, p.y);
+                    cCtx.rotate((p.rotation * Math.PI) / 180);
+                    cCtx.fillStyle = p.color;
+                    cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    cCtx.restore();
+                });
+
+                if (now - startTime < 4500) {
+                    confettiAnimationId = requestAnimationFrame(renderConfetti);
+                } else {
+                    cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                    cancelAnimationFrame(confettiAnimationId);
+                }
+            }
+
+            requestAnimationFrame(renderConfetti);
+        }
+
+        // Handle Responsive Resize
+        window.addEventListener('resize', () => {
+            const confettiCanvas = document.getElementById("confettiCanvas");
+            if (confettiCanvas) {
+                confettiCanvas.width = window.innerWidth;
+                confettiCanvas.height = window.innerHeight;
+            }
+        });
     </script>
 </body>
 </html>
